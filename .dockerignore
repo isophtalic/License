@@ -1,0 +1,15 @@
+.coveralls.yml
+.env
+.idea/
+vendor/
+.vscode
+.chglog
+.git
+Jenkinsfile
+.dockerignore
+Dockerfile
+.gitignore
+logs
+*.log
+README.md
+backend

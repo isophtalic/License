@@ -1,0 +1,7 @@
+conf/app.env
+.vscode
+.chglog
+.git
+.env
+.idea/
+backend

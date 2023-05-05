@@ -1,0 +1,129 @@
+package persistence
+
+import (
+	"log"
+	"sync"
+
+	"git.cyradar.com/license-manager/backend/internal/configs"
+	"git.cyradar.com/license-manager/backend/internal/models"
+	"git.cyradar.com/license-manager/backend/internal/persistence/database"
+	"git.cyradar.com/license-manager/backend/internal/persistence/postgres"
+	"git.cyradar.com/license-manager/backend/internal/persistence/redis"
+	"git.cyradar.com/license-manager/backend/internal/repository"
+)
+
+var (
+	postgresDB *postgres.Postgres
+	redisDB    *redis.UserRedisRepository
+
+	user                   repository.UserRepository
+	account                repository.AccountRepository
+	product                repository.ProductRepository
+	productOption          repository.ProductOptionRepository
+	productOptionDetail    repository.ProductOptionDetailRepository
+	key                    repository.KeyRepository
+	customer               repository.CustomerRepository
+	license                repository.LicenseRepository
+	licenseConfig          repository.LicenseConfigRepository
+	loadUserRepositoryOnce sync.Once
+)
+
+func loadRepositoryProvider(config *configs.Configure) {
+	loadUserRepositoryOnce.Do(func() {
+		account = redis.NewUserAccessIDRedisRepository(config) // not change engine yet
+		user = database.NewPostgresUserProvider("user", postgresDB)
+		product = database.NewPostgresProductProvider("product", postgresDB)
+		customer = database.NewPostgresCustomerProvider("customer", postgresDB)
+		license = database.NewPostgresLicenseProvider("license", postgresDB)
+		licenseConfig = database.NewPostgresLicenseConfigProvider("licenseConfig", postgresDB)
+	})
+}
+
+func ConnectDatabase(config *configs.Configure) {
+	postgresDB = postgres.NewPostgresQL(config)
+	redisDB = redis.NewUserAccessIDRedisRepository(config)
+	loadRepositoryProvider(config)
+}
+
+func MigrateDatabase() {
+	defer func() {
+		if err := recover(); err != nil {
+			panic(err)
+		}
+	}()
+
+	err := postgresDB.GetDB().AutoMigrate(
+		&models.User{},
+		&models.Product{},
+		&models.ProductOption{},
+		&models.OptionDetail{},
+		&models.Customer{},
+		&models.License{},
+		&models.LicenseConfig{},
+	)
+	if err != nil {
+		panic(err)
+	}
+}
+
+func User() repository.UserRepository {
+	if user == nil {
+		log.Fatalln("persistence: user not initiated")
+	}
+	return user
+}
+
+func Account() repository.AccountRepository {
+	if account == nil {
+		log.Fatalln("persistence: account not initiated")
+	}
+	return account
+}
+
+func Product() repository.ProductRepository {
+	if product == nil {
+		log.Fatalln("persistence: product not initiated")
+	}
+	return product
+}
+
+func ProductOption() repository.ProductOptionRepository {
+	if productOption == nil {
+		log.Fatalln("persistence: product-option not initiated")
+	}
+	return productOption
+}
+
+func ProductOptionDetail() repository.ProductOptionDetailRepository {
+	if productOptionDetail == nil {
+		log.Fatalln("persistence: product-option-detail not initiated")
+	}
+	return productOptionDetail
+}
+
+func Key() repository.KeyRepository {
+	if key == nil {
+		log.Fatalln("persistence: key not initiated")
+	}
+	return key
+}
+
+func Customer() repository.CustomerRepository {
+	if customer == nil {
+		log.Fatalln("persistence: customer not initiated")
+	}
+	return customer
+}
+func License() repository.LicenseRepository {
+	if license == nil {
+		log.Fatalln("persistence: license not initiated")
+	}
+	return license
+}
+
+func LicenseConfig() repository.LicenseConfigRepository {
+	if licenseConfig == nil {
+		log.Fatalln("persistence: LicenseConfig not initiated")
+	}
+	return licenseConfig
+}
