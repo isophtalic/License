@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"time"
 
-	"git.cyradar.com/license-manager/backend/internal/dto"
-	"git.cyradar.com/license-manager/backend/internal/models"
-	postgresDB "git.cyradar.com/license-manager/backend/internal/persistence/postgres"
-	"git.cyradar.com/license-manager/backend/internal/validators"
 	"github.com/google/uuid"
+	"github.com/isophtalic/License/internal/dto"
+	"github.com/isophtalic/License/internal/models"
+	postgresDB "github.com/isophtalic/License/internal/persistence/postgres"
+	"github.com/isophtalic/License/internal/validators"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 )

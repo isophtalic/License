@@ -1,8 +1,8 @@
 package repository
 
 import (
-	"git.cyradar.com/license-manager/backend/internal/dto"
-	"git.cyradar.com/license-manager/backend/internal/models"
+	"github.com/isophtalic/License/internal/dto"
+	"github.com/isophtalic/License/internal/models"
 	"gorm.io/gorm"
 )
 

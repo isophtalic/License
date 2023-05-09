@@ -4,12 +4,12 @@ import (
 	"log"
 	"sync"
 
-	"git.cyradar.com/license-manager/backend/internal/configs"
-	"git.cyradar.com/license-manager/backend/internal/models"
-	"git.cyradar.com/license-manager/backend/internal/persistence/database"
-	"git.cyradar.com/license-manager/backend/internal/persistence/postgres"
-	"git.cyradar.com/license-manager/backend/internal/persistence/redis"
-	"git.cyradar.com/license-manager/backend/internal/repository"
+	"github.com/isophtalic/License/internal/configs"
+	"github.com/isophtalic/License/internal/models"
+	"github.com/isophtalic/License/internal/persistence/database"
+	"github.com/isophtalic/License/internal/persistence/postgres"
+	"github.com/isophtalic/License/internal/persistence/redis"
+	"github.com/isophtalic/License/internal/repository"
 )
 
 var (

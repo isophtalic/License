@@ -5,10 +5,10 @@ import (
 	"regexp"
 	"time"
 
-	"git.cyradar.com/license-manager/backend/internal/dto"
-	customError "git.cyradar.com/license-manager/backend/internal/error"
-	"git.cyradar.com/license-manager/backend/internal/helpers"
 	"github.com/asaskevich/govalidator"
+	"github.com/isophtalic/License/internal/dto"
+	customError "github.com/isophtalic/License/internal/error"
+	"github.com/isophtalic/License/internal/helpers"
 )
 
 func ValidateCreateLicenseStruct(cmd *dto.CreateLicenseDTO) {

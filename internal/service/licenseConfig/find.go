@@ -5,10 +5,10 @@ import (
 	"net/http"
 	"strings"
 
-	customError "git.cyradar.com/license-manager/backend/internal/error"
-	"git.cyradar.com/license-manager/backend/internal/models"
-	"git.cyradar.com/license-manager/backend/internal/persistence"
 	"github.com/gin-gonic/gin"
+	customError "github.com/isophtalic/License/internal/error"
+	"github.com/isophtalic/License/internal/models"
+	"github.com/isophtalic/License/internal/persistence"
 )
 
 func GetLicenseConfigs(c *gin.Context) (licenseConfigs []models.LicenseConfig, page int, total_pages int) {

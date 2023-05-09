@@ -14,16 +14,16 @@ var (
 )
 
 type Configure struct {
-	POSTGRES_HOST     string `mapstructure:"LICENSE_MANAGEMENT_POSTGRES_HOST"`
-	POSTGRES_USER     string `mapstructure:"LICENSE_MANAGEMENT_POSTGRES_USER"`
-	POSTGRES_PASSWORD string `mapstructure:"LICENSE_MANAGEMENT_POSTGRES_PASSWORD"`
-	POSTGRES_DB       string `mapstructure:"LICENSE_MANAGEMENT_POSTGRES_DB"`
-	POSTGRES_PORT     string `mapstructure:"LICENSE_MANAGEMENT_POSTGRES_PORT"`
-	REDIS_PORT        string `mapstructure:"LICENSE_MANAGEMENT_REDIS_PORT"`
-	PORT              string `mapstructure:"LICENSE_MANAGEMENT_PORT"`
-	CLIENT_ORIGIN     string `mapstructure:"LICENSE_MANAGEMENT_CLIENT_ORIGIN"`
-	JWT_SECRET_KEY    string `mapstructure:"LICENSE_MANAGEMENT_JWT_SECRET_KEY"`
-	Mode              string `mapstructure:"LICENSE_MANAGEMENT_MODE"`
+	DBHost         string `mapstructure:"POSTGRES_HOST"`
+	DBUserName     string `mapstructure:"POSTGRES_USER"`
+	DBUserPassword string `mapstructure:"POSTGRES_PASSWORD"`
+	DBName         string `mapstructure:"POSTGRES_DB"`
+	DBPort         string `mapstructure:"POSTGRES_PORT"`
+	RedisPort      string `mapstructure:"REDIS_PORT"`
+	ServerPort     string `mapstructure:"PORT"`
+	JWT_KEY        string `mapstructure:"JWTSECRET_KEY"`
+	Mode           string `mapstructure:"MODE"`
+	ClientOrigin   string `mapstructure:"CLIENT_ORIGIN"`
 }
 
 func LoadConfigure(path string) (config Configure, err error) {

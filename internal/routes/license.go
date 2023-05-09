@@ -1,8 +1,8 @@
 package routes
 
 import (
-	"git.cyradar.com/license-manager/backend/internal/app"
 	"github.com/gin-gonic/gin"
+	"github.com/isophtalic/License/internal/app"
 )
 
 func licenseRouter(parent *gin.RouterGroup) {

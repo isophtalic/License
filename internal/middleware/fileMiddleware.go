@@ -5,13 +5,13 @@ import (
 	"net/http"
 	"path/filepath"
 
-	customError "git.cyradar.com/license-manager/backend/internal/error"
 	"github.com/gin-gonic/gin"
+	customError "github.com/isophtalic/License/internal/error"
 	"golang.org/x/exp/slices"
 )
 
 /*
-	request more than size(MB) will be aborted
+request more than size(MB) will be aborted
 */
 func SizeLimiterMiddleware(size int64) gin.HandlerFunc {
 	return func(c *gin.Context) {

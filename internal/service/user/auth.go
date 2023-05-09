@@ -6,17 +6,17 @@ import (
 	"strings"
 	"time"
 
-	"git.cyradar.com/license-manager/backend/internal/configs"
-	"git.cyradar.com/license-manager/backend/internal/helpers"
-	providerJWT "git.cyradar.com/license-manager/backend/internal/helpers"
-	"git.cyradar.com/license-manager/backend/internal/models"
-	"git.cyradar.com/license-manager/backend/internal/persistence"
-	"git.cyradar.com/license-manager/backend/internal/validators"
+	"github.com/isophtalic/License/internal/configs"
+	"github.com/isophtalic/License/internal/helpers"
+	providerJWT "github.com/isophtalic/License/internal/helpers"
+	"github.com/isophtalic/License/internal/models"
+	"github.com/isophtalic/License/internal/persistence"
+	"github.com/isophtalic/License/internal/validators"
 
-	customError "git.cyradar.com/license-manager/backend/internal/error"
 	"github.com/asaskevich/govalidator"
 	"github.com/golang-jwt/jwt/v4"
 	"github.com/google/uuid"
+	customError "github.com/isophtalic/License/internal/error"
 	"github.com/pkg/errors"
 )
 
@@ -88,7 +88,7 @@ func LogIn(cmd *AuthSignIn) (string, error) {
 
 	claims := cmd.makeClaims(*user, now)
 
-	tokenString, err := providerJWT.CreateToken(claims, config.JWT_SECRET_KEY)
+	tokenString, err := providerJWT.CreateToken(claims, config.JWT_KEY)
 	if err != nil {
 		return "", errors.New("Cannot create token")
 	}

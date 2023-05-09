@@ -10,7 +10,7 @@ import (
 	"strings"
 	"time"
 
-	"git.cyradar.com/license-manager/backend/internal/configs"
+	"github.com/isophtalic/License/internal/configs"
 
 	"gopkg.in/redis.v5"
 )
@@ -38,12 +38,12 @@ func (e DatabaseExecutionError) Error() string {
 }
 
 func NewRedisProviderFromURL(config *configs.Configure) *RedisProvider {
-	client := newRedisClientFromURL(config.REDIS_PORT)
+	client := newRedisClientFromURL(config.RedisPort)
 	if client == nil {
 		log.Fatalln("Redis server connected unsuccessfully")
 	}
 	return &RedisProvider{
-		url:   config.REDIS_PORT,
+		url:   config.RedisPort,
 		redis: client,
 	}
 }

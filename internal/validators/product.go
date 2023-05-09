@@ -6,9 +6,9 @@ import (
 	"regexp"
 	"strings"
 
-	dto "git.cyradar.com/license-manager/backend/internal/dto"
-	customError "git.cyradar.com/license-manager/backend/internal/error"
-	"git.cyradar.com/license-manager/backend/internal/helpers"
+	dto "github.com/isophtalic/License/internal/dto"
+	customError "github.com/isophtalic/License/internal/error"
+	"github.com/isophtalic/License/internal/helpers"
 )
 
 func ValidateCreateProduct(productDTO *dto.ProductDTO) {

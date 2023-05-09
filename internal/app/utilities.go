@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"reflect"
 
-	customError "git.cyradar.com/license-manager/backend/internal/error"
 	"github.com/gin-gonic/gin"
+	customError "github.com/isophtalic/License/internal/error"
 )
 
 type ResponseBody struct {

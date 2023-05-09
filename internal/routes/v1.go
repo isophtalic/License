@@ -1,10 +1,10 @@
 package routes
 
 import (
-	"git.cyradar.com/license-manager/backend/internal/configs"
+	"github.com/isophtalic/License/internal/configs"
 
-	"git.cyradar.com/license-manager/backend/internal/middleware"
 	"github.com/gin-gonic/gin"
+	"github.com/isophtalic/License/internal/middleware"
 )
 
 func NewAPIv1(config *configs.Configure, mode string) *gin.Engine {
@@ -15,7 +15,7 @@ func NewAPIv1(config *configs.Configure, mode string) *gin.Engine {
 	authRouter(v1)
 
 	v1.Use(
-		middleware.AuthMiddleware(config.JWT_SECRET_KEY),
+		middleware.AuthMiddleware(config.JWT_KEY),
 	)
 
 	userRouter(v1)

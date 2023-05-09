@@ -1,7 +1,7 @@
 package repository
 
 import (
-	"git.cyradar.com/license-manager/backend/internal/models"
+	"github.com/isophtalic/License/internal/models"
 )
 
 type UserRepository interface {

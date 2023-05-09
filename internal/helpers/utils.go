@@ -12,7 +12,7 @@ import (
 	"strings"
 	"time"
 
-	"git.cyradar.com/license-manager/backend/internal/dto"
+	"github.com/isophtalic/License/internal/dto"
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
 )

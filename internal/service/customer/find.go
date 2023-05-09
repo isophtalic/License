@@ -6,9 +6,9 @@ import (
 	"net/url"
 	"strings"
 
-	customError "git.cyradar.com/license-manager/backend/internal/error"
-	"git.cyradar.com/license-manager/backend/internal/models"
-	"git.cyradar.com/license-manager/backend/internal/persistence"
+	customError "github.com/isophtalic/License/internal/error"
+	"github.com/isophtalic/License/internal/models"
+	"github.com/isophtalic/License/internal/persistence"
 )
 
 func GetCustomers(query url.Values) (customers []models.Customer, page, total_pages int) {

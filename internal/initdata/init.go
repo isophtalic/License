@@ -1,10 +1,10 @@
 package initdata
 
 import (
-	"git.cyradar.com/license-manager/backend/internal/helpers"
-	"git.cyradar.com/license-manager/backend/internal/models"
-	"git.cyradar.com/license-manager/backend/internal/persistence"
 	"github.com/google/uuid"
+	"github.com/isophtalic/License/internal/helpers"
+	"github.com/isophtalic/License/internal/models"
+	"github.com/isophtalic/License/internal/persistence"
 )
 
 func InitAccount() {

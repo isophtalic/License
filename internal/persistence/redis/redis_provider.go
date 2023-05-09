@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"git.cyradar.com/license-manager/backend/internal/configs"
+	"github.com/isophtalic/License/internal/configs"
 )
 
 var UserRedisAccessIdPrefix = "user_access"

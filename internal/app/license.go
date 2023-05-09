@@ -3,10 +3,10 @@ package app
 import (
 	"net/http"
 
-	"git.cyradar.com/license-manager/backend/internal/dto"
-	customError "git.cyradar.com/license-manager/backend/internal/error"
-	serviceLicense "git.cyradar.com/license-manager/backend/internal/service/license"
 	"github.com/gin-gonic/gin"
+	"github.com/isophtalic/License/internal/dto"
+	customError "github.com/isophtalic/License/internal/error"
+	serviceLicense "github.com/isophtalic/License/internal/service/license"
 )
 
 func GetLicenses() gin.HandlerFunc {

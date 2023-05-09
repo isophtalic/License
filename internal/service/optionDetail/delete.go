@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"net/http"
 
-	customError "git.cyradar.com/license-manager/backend/internal/error"
-	"git.cyradar.com/license-manager/backend/internal/persistence"
+	customError "github.com/isophtalic/License/internal/error"
+	"github.com/isophtalic/License/internal/persistence"
 )
 
 func DeleteByID(id string) {

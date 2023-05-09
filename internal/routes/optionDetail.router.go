@@ -1,8 +1,8 @@
 package routes
 
 import (
-	app "git.cyradar.com/license-manager/backend/internal/app"
 	"github.com/gin-gonic/gin"
+	app "github.com/isophtalic/License/internal/app"
 )
 
 func optionDetailRouter(parent *gin.RouterGroup) {

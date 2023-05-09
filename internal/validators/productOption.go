@@ -1,9 +1,9 @@
 package validators
 
 import (
-	"git.cyradar.com/license-manager/backend/internal/dto"
-	customError "git.cyradar.com/license-manager/backend/internal/error"
-	"git.cyradar.com/license-manager/backend/internal/helpers"
+	"github.com/isophtalic/License/internal/dto"
+	customError "github.com/isophtalic/License/internal/error"
+	"github.com/isophtalic/License/internal/helpers"
 	"net/http"
 )
 

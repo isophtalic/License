@@ -3,8 +3,8 @@ package app
 import (
 	"net/http"
 
-	optionDetailService "git.cyradar.com/license-manager/backend/internal/service/optionDetail"
 	"github.com/gin-gonic/gin"
+	optionDetailService "github.com/isophtalic/License/internal/service/optionDetail"
 )
 
 // [DELETE] /option_detail/:id

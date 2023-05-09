@@ -5,8 +5,8 @@ import (
 	"net/mail"
 	"regexp"
 
-	customError "git.cyradar.com/license-manager/backend/internal/error"
 	"github.com/google/uuid"
+	customError "github.com/isophtalic/License/internal/error"
 )
 
 func ValidateEmail(email string) error {

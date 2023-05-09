@@ -11,11 +11,11 @@ import (
 	"syscall"
 	"time"
 
-	"git.cyradar.com/license-manager/backend/internal/configs"
-	"git.cyradar.com/license-manager/backend/internal/initdata"
-	"git.cyradar.com/license-manager/backend/internal/persistence"
-	"git.cyradar.com/license-manager/backend/internal/routes"
 	"github.com/gin-gonic/gin"
+	"github.com/isophtalic/License/internal/configs"
+	"github.com/isophtalic/License/internal/initdata"
+	"github.com/isophtalic/License/internal/persistence"
+	"github.com/isophtalic/License/internal/routes"
 	"github.com/urfave/cli/v2"
 )
 
@@ -40,11 +40,11 @@ func RunServerCommand() func(c *cli.Context) error {
 		handleError()
 		migrateDB()
 		if config.Mode == "release" {
-			fmt.Printf("Service is running on http://127.0.0.1%s/api/v1\n", config.PORT)
+			fmt.Printf("Service is running on http://127.0.0.1%s/api/v1\n", config.ServerPort)
 		}
 		serve := routes.NewAPIv1(config, config.Mode)
 
-		serve.Run(config.PORT)
+		serve.Run(config.ServerPort)
 		return nil
 	}
 }

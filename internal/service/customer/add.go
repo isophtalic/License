@@ -4,11 +4,11 @@ import (
 	"errors"
 	"time"
 
-	"git.cyradar.com/license-manager/backend/internal/dto"
-	"git.cyradar.com/license-manager/backend/internal/models"
-	"git.cyradar.com/license-manager/backend/internal/persistence"
-	"git.cyradar.com/license-manager/backend/internal/validators"
 	"github.com/google/uuid"
+	"github.com/isophtalic/License/internal/dto"
+	"github.com/isophtalic/License/internal/models"
+	"github.com/isophtalic/License/internal/persistence"
+	"github.com/isophtalic/License/internal/validators"
 )
 
 func AddCustomer(cmd *dto.UpdateAndAddCustomerDTO) error {

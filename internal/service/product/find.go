@@ -7,10 +7,10 @@ import (
 	"strconv"
 	"strings"
 
-	customError "git.cyradar.com/license-manager/backend/internal/error"
-	"git.cyradar.com/license-manager/backend/internal/helpers"
-	"git.cyradar.com/license-manager/backend/internal/models"
-	"git.cyradar.com/license-manager/backend/internal/persistence"
+	customError "github.com/isophtalic/License/internal/error"
+	"github.com/isophtalic/License/internal/helpers"
+	"github.com/isophtalic/License/internal/models"
+	"github.com/isophtalic/License/internal/persistence"
 	"gorm.io/gorm"
 )
 

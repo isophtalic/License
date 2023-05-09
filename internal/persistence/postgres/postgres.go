@@ -3,7 +3,7 @@ package postgres
 import (
 	"fmt"
 
-	"git.cyradar.com/license-manager/backend/internal/configs"
+	"github.com/isophtalic/License/internal/configs"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -15,7 +15,7 @@ type Postgres struct {
 }
 
 func NewPostgresQL(config *configs.Configure) *Postgres {
-	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=disable", config.POSTGRES_HOST, config.POSTGRES_USER, config.POSTGRES_PASSWORD, config.POSTGRES_DB, config.POSTGRES_PORT)
+	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=disable", config.DBHost, config.DBUserName, config.DBUserPassword, config.DBName, config.DBPort)
 	fmt.Println("Connecting DB . . .")
 	db, err := gorm.Open(postgres.New(postgres.Config{
 		DSN: dsn,

@@ -3,9 +3,9 @@ package database
 import (
 	"time"
 
-	"git.cyradar.com/license-manager/backend/internal/helpers"
-	"git.cyradar.com/license-manager/backend/internal/models"
-	postgresDB "git.cyradar.com/license-manager/backend/internal/persistence/postgres"
+	"github.com/isophtalic/License/internal/helpers"
+	"github.com/isophtalic/License/internal/models"
+	postgresDB "github.com/isophtalic/License/internal/persistence/postgres"
 	"gorm.io/gorm"
 )
 

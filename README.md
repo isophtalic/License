@@ -5,13 +5,16 @@ This repository containing the source code for a centralized license management 
 ## Clone project
 
 ```
-    $ git clone https://git.cyradar.com/license-manager/backend.git
+    $ git clone https://github.com/isophtalic/License.git
     $ cd backend
 ```
+
 ## Run DB in docker-compose
+
 ```
     $ docker-compse up -d
 ```
+
 ## Usage/Examples
 
 ```
@@ -31,12 +34,14 @@ This repository containing the source code for a centralized license management 
 ```
     $ go build -o backend cmd/main.go
 ```
+
 - Build code by docker
 
 ```
     $ docker build -t license_backend -f build/Dockerfile .
     $ docker run -it license_backend bash -c "./backend info" # test build
 ```
+
 ## API Reference
 
 - ### User

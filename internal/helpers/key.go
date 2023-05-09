@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"net/http"
 
-	customError "git.cyradar.com/license-manager/backend/internal/error"
+	customError "github.com/isophtalic/License/internal/error"
 )
 
 func GenerateKeyPair(keyType string) (*rsa.PrivateKey, *rsa.PublicKey) {

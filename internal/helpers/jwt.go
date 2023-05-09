@@ -7,9 +7,9 @@ import (
 	"net/http"
 	"time"
 
-	"git.cyradar.com/license-manager/backend/internal/configs"
-	customError "git.cyradar.com/license-manager/backend/internal/error"
 	"github.com/dgrijalva/jwt-go"
+	"github.com/isophtalic/License/internal/configs"
+	customError "github.com/isophtalic/License/internal/error"
 )
 
 type JWTService struct {
@@ -86,7 +86,7 @@ func decode(tokenString string) (jwt.MapClaims, error) {
 	// check existence of user
 	claims := jwt.MapClaims{}
 	tkn, err := jwt.ParseWithClaims(tokenString, claims, func(t *jwt.Token) (interface{}, error) {
-		return []byte(config.JWT_SECRET_KEY), nil
+		return []byte(config.JWT_KEY), nil
 	})
 
 	if err != nil || tkn == nil || !tkn.Valid {

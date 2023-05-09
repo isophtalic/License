@@ -1,6 +1,6 @@
 package dto
 
-import "git.cyradar.com/license-manager/backend/internal/models"
+import "github.com/isophtalic/License/internal/models"
 
 type ProductOptionDTO struct {
 	Name         *string `json:"name,omitempty"`

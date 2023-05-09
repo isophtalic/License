@@ -4,9 +4,9 @@ import (
 	"net/http"
 	"strings"
 
-	"git.cyradar.com/license-manager/backend/internal/dto"
-	"git.cyradar.com/license-manager/backend/internal/helpers"
-	serviceUser "git.cyradar.com/license-manager/backend/internal/service/user"
+	"github.com/isophtalic/License/internal/dto"
+	"github.com/isophtalic/License/internal/helpers"
+	serviceUser "github.com/isophtalic/License/internal/service/user"
 
 	"github.com/gin-gonic/gin"
 )

@@ -3,10 +3,10 @@ package app
 import (
 	"net/http"
 
-	"git.cyradar.com/license-manager/backend/internal/dto"
-	customError "git.cyradar.com/license-manager/backend/internal/error"
-	productOptionService "git.cyradar.com/license-manager/backend/internal/service/productOption"
 	"github.com/gin-gonic/gin"
+	"github.com/isophtalic/License/internal/dto"
+	customError "github.com/isophtalic/License/internal/error"
+	productOptionService "github.com/isophtalic/License/internal/service/productOption"
 )
 
 // [GET] /product-option/:id

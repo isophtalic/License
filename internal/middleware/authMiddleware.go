@@ -5,10 +5,10 @@ import (
 	"net/http"
 	"strings"
 
-	appController "git.cyradar.com/license-manager/backend/internal/app"
-	"git.cyradar.com/license-manager/backend/internal/persistence"
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
+	appController "github.com/isophtalic/License/internal/app"
+	"github.com/isophtalic/License/internal/persistence"
 )
 
 func AuthMiddleware(JWTKEY string) gin.HandlerFunc {

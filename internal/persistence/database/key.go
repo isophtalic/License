@@ -3,8 +3,8 @@ package database
 import (
 	"fmt"
 
-	"git.cyradar.com/license-manager/backend/internal/models"
-	postgresDB "git.cyradar.com/license-manager/backend/internal/persistence/postgres"
+	"github.com/isophtalic/License/internal/models"
+	postgresDB "github.com/isophtalic/License/internal/persistence/postgres"
 	"gorm.io/gorm"
 )
 

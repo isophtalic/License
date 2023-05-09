@@ -5,11 +5,11 @@ import (
 	"net/http"
 	"time"
 
-	"git.cyradar.com/license-manager/backend/internal/dto"
-	customError "git.cyradar.com/license-manager/backend/internal/error"
-	"git.cyradar.com/license-manager/backend/internal/models"
-	postgresDB "git.cyradar.com/license-manager/backend/internal/persistence/postgres"
 	"github.com/google/uuid"
+	"github.com/isophtalic/License/internal/dto"
+	customError "github.com/isophtalic/License/internal/error"
+	"github.com/isophtalic/License/internal/models"
+	postgresDB "github.com/isophtalic/License/internal/persistence/postgres"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 )

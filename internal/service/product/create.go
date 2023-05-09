@@ -5,13 +5,13 @@ import (
 	"net/http"
 	"time"
 
-	"git.cyradar.com/license-manager/backend/internal/dto"
-	customError "git.cyradar.com/license-manager/backend/internal/error"
-	"git.cyradar.com/license-manager/backend/internal/helpers"
-	"git.cyradar.com/license-manager/backend/internal/models"
-	"git.cyradar.com/license-manager/backend/internal/persistence"
-	"git.cyradar.com/license-manager/backend/internal/validators"
 	"github.com/google/uuid"
+	"github.com/isophtalic/License/internal/dto"
+	customError "github.com/isophtalic/License/internal/error"
+	"github.com/isophtalic/License/internal/helpers"
+	"github.com/isophtalic/License/internal/models"
+	"github.com/isophtalic/License/internal/persistence"
+	"github.com/isophtalic/License/internal/validators"
 )
 
 func Create(creatorEmail string, productDTO *dto.ProductDTO) string {

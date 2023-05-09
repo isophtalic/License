@@ -5,13 +5,13 @@ import (
 	"math"
 	"net/http"
 
-	"git.cyradar.com/license-manager/backend/internal/dto"
-	customError "git.cyradar.com/license-manager/backend/internal/error"
+	"github.com/isophtalic/License/internal/dto"
+	customError "github.com/isophtalic/License/internal/error"
 	"gorm.io/gorm"
 )
 
 /*
-	Query is custom query. <T> is type of model
+Query is custom query. <T> is type of model
 */
 type Query[T interface{}] struct {
 	db     *gorm.DB
@@ -21,7 +21,7 @@ type Query[T interface{}] struct {
 }
 
 /*
-	Initiate new instance of query.
+Initiate new instance of query.
 */
 func NewQuery[T interface{}](model interface{}, database *gorm.DB) *Query[T] {
 	return &Query[T]{
@@ -37,7 +37,7 @@ func (q *Query[T]) Origin() *gorm.DB {
 }
 
 /*
-	Like Flush() but return Query
+Like Flush() but return Query
 */
 func (q *Query[T]) New() *Query[T] {
 	q.Flush()
@@ -45,7 +45,7 @@ func (q *Query[T]) New() *Query[T] {
 }
 
 /*
-	Reset all values to initial values.
+Reset all values to initial values.
 */
 func (q *Query[T]) Flush() {
 	q.value = nil
@@ -54,21 +54,21 @@ func (q *Query[T]) Flush() {
 }
 
 /*
-	Return one record. Use this func when finding one.
+Return one record. Use this func when finding one.
 */
 func (q *Query[T]) Value() *T {
 	return q.value
 }
 
 /*
-	Return many records. Use this func when finding many.
+Return many records. Use this func when finding many.
 */
 func (q *Query[T]) Values() []T {
 	return q.values
 }
 
 /*
-	Include: select specific attributes to return.
+Include: select specific attributes to return.
 */
 func (q *Query[T]) Include(attributes ...string) *Query[T] {
 	q.query = q.query.Select(attributes)
@@ -76,7 +76,7 @@ func (q *Query[T]) Include(attributes ...string) *Query[T] {
 }
 
 /*
-	Exclude: Omit specific attributes.
+Exclude: Omit specific attributes.
 */
 func (q *Query[T]) Exclude(attributes ...string) *Query[T] {
 	q.query = q.query.Omit(attributes...)
@@ -94,8 +94,8 @@ func (q *Query[T]) Or(conditions map[string]interface{}) *Query[T] {
 }
 
 /*
-	Loading associate.
-	Param attributes should includes primary key and foreign key.
+Loading associate.
+Param attributes should includes primary key and foreign key.
 */
 func (q *Query[T]) Association(name string, attributes []string) *Query[T] {
 	if len(attributes) > 0 {
@@ -110,7 +110,7 @@ func (q *Query[T]) Association(name string, attributes []string) *Query[T] {
 }
 
 /*
-	Pagination with limit & page & sort
+Pagination with limit & page & sort
 */
 func (q *Query[T]) Pagination(pagination *dto.PaginationDTO) *Query[T] {
 	var totalRows int64
@@ -135,7 +135,7 @@ func (q *Query[T]) FindAll() *Query[T] {
 }
 
 /*
-	Find one with specific value of any attributes.
+Find one with specific value of any attributes.
 */
 func (q *Query[T]) FindOneByAttributes(attr map[string]interface{}) *Query[T] {
 	q.values = nil
@@ -148,7 +148,7 @@ func (q *Query[T]) FindOneByAttributes(attr map[string]interface{}) *Query[T] {
 }
 
 /*
-	Find many with specific value of any attributes.
+Find many with specific value of any attributes.
 */
 func (q *Query[T]) FindManyByAttributes(attr map[string]interface{}) *Query[T] {
 	q.value = nil

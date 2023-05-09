@@ -1,9 +1,9 @@
 package routes
 
 import (
-	app "git.cyradar.com/license-manager/backend/internal/app"
-	"git.cyradar.com/license-manager/backend/internal/middleware"
 	"github.com/gin-gonic/gin"
+	app "github.com/isophtalic/License/internal/app"
+	"github.com/isophtalic/License/internal/middleware"
 )
 
 func productRouter(parent *gin.RouterGroup) {

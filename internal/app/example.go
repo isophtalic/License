@@ -1,7 +1,7 @@
 package app
 
 import (
-	customError "git.cyradar.com/license-manager/backend/internal/error"
+	customError "github.com/isophtalic/License/internal/error"
 	"net/http"
 
 	"github.com/gin-gonic/gin"

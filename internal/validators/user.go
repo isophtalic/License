@@ -5,9 +5,9 @@ import (
 	"net/http"
 	"regexp"
 
-	"git.cyradar.com/license-manager/backend/internal/dto"
-	customError "git.cyradar.com/license-manager/backend/internal/error"
 	"github.com/asaskevich/govalidator"
+	"github.com/isophtalic/License/internal/dto"
+	customError "github.com/isophtalic/License/internal/error"
 	"golang.org/x/crypto/bcrypt"
 )
 

@@ -1,6 +1,6 @@
 package repository
 
-import "git.cyradar.com/license-manager/backend/internal/models"
+import "github.com/isophtalic/License/internal/models"
 
 type LicenseRepository interface {
 	GetLicenses(per_page, pg, sort string) (licenses []models.License, page, totalPage int, err error)
