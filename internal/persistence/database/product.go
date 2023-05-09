@@ -75,7 +75,7 @@ func (repo *PostgresProductProvider) CreateOne(creatorEmail string, productDTO *
 		ProductID:    &[]string{uuid.NewString()}[0],
 		Name:         productDTO.Name,
 		Description:  productDTO.Description,
-		Status:       new(bool),
+		Status:       productDTO.Status,
 		Company:      productDTO.Company,
 		Email:        productDTO.Email,
 		Phone:        productDTO.Phone,
