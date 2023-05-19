@@ -33,6 +33,7 @@ func loadRepositoryProvider(config *configs.Configure) {
 		account = redis.NewUserAccessIDRedisRepository(config) // not change engine yet
 		user = database.NewPostgresUserProvider("user", postgresDB)
 		product = database.NewPostgresProductProvider("product", postgresDB)
+		key = database.NewPostgresKeyProvider("keys", postgresDB)
 		customer = database.NewPostgresCustomerProvider("customer", postgresDB)
 		license = database.NewPostgresLicenseProvider("license", postgresDB)
 		licenseConfig = database.NewPostgresLicenseConfigProvider("licenseConfig", postgresDB)
@@ -56,6 +57,7 @@ func MigrateDatabase() {
 		&models.User{},
 		&models.Product{},
 		&models.ProductOption{},
+		&models.Key{},
 		&models.OptionDetail{},
 		&models.Customer{},
 		&models.License{},

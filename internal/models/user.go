@@ -18,3 +18,27 @@ type User struct {
 	CreatedAt    time.Time `json:"created_at" gorm:"type:timestamp;not null"`
 	UpdatedAt    time.Time `json:"updated_at" gorm:"type:timestamp;not null"`
 }
+
+type ResponseUser struct {
+	UserID       *string   `json:"userID" gorm:"type:uuid;column:user_id;primary_key"`
+	Email        *string   `json:"email" gorm:"type:varchar(100);unique;not null"`
+	Name         *string   `json:"name" gorm:"type:varchar(255);not null"`
+	Role         *string   `json:"role" gorm:"type:varchar(10);not null"`
+	Status       *bool     `json:"status" gorm:"type:bool;not null"`
+	LastLoggedIn time.Time `json:"last_logged_in" gorm:"type:timestamp;not null"`
+	CreatedAt    time.Time `json:"created_at" gorm:"type:timestamp;not null"`
+	UpdatedAt    time.Time `json:"updated_at" gorm:"type:timestamp;not null"`
+}
+
+func (user *User) ToResponseUser() *ResponseUser {
+	return &ResponseUser{
+		UserID:       user.UserID,
+		Email:        user.Email,
+		Name:         user.Name,
+		Role:         user.Role,
+		Status:       user.Status,
+		LastLoggedIn: user.LastLoggedIn,
+		CreatedAt:    user.CreatedAt,
+		UpdatedAt:    user.CreatedAt,
+	}
+}

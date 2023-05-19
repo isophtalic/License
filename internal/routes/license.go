@@ -14,4 +14,7 @@ func licenseRouter(parent *gin.RouterGroup) {
 	router.GET("/:license_id/config", app.GetLicenseConfigs())
 	router.POST("/:license_id/config", app.CreateConfig())
 	router.PUT("/config/:id", app.UpdateConfig())
+
+	// api make license key
+	router.POST("/:license_id/license_key", app.MakeLicenseKey())
 }

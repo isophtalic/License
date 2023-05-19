@@ -40,3 +40,10 @@ func (repo *PostgresKeyProvider) Create(keys ...*models.Key) {
 		panic(r.Error)
 	}
 }
+
+func (repo *PostgresKeyProvider) GetKeyByProductID(productID string) (*models.Key, error) {
+	database := repo.db
+	key := new(models.Key)
+	result := database.Where("product_id", productID).First(&key)
+	return key, result.Error
+}

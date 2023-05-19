@@ -12,7 +12,7 @@ pipeline {
     stage ('Building image') {
         steps {
             script{
-            if (env.BRANCH_NAME == "dev" || env.BRANCH_NAME == "feature/cicd" || env.BRANCH_NAME == "master"  || env.BRANCH_NAME == "staging"){
+            if (env.BRANCH_NAME == "develop" || env.BRANCH_NAME == "dev" || env.BRANCH_NAME == "feature/cicd" || env.BRANCH_NAME == "master"  || env.BRANCH_NAME == "staging"){
                 dockerImage = docker.build("$ImageName" + ":" + "$version", "-f build/Dockerfile .")
                 }
             }
@@ -21,7 +21,7 @@ pipeline {
     stage('Deploy Image') {
         steps{
             script {
-                if (env.BRANCH_NAME == "dev" || env.BRANCH_NAME == "staging") {
+                if (env.BRANCH_NAME == "develop" || env.BRANCH_NAME == "dev" || env.BRANCH_NAME == "staging") {
                     docker.withRegistry(registryUrl, registryCredential ) {
                         dockerImage.push(env.BRANCH_NAME)
                     }

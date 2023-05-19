@@ -37,7 +37,7 @@ func MarshalAsPEMStr(privateKey *rsa.PrivateKey, publicKey *rsa.PublicKey) (stri
 func MarshalPubKeyAsPEMStr(publicKey *rsa.PublicKey) string {
 	pubKeyPem := string(pem.EncodeToMemory(
 		&pem.Block{
-			Type:  "PUBLIC-KEY",
+			Type:  "PUBLIC KEY",
 			Bytes: x509.MarshalPKCS1PublicKey(publicKey),
 		},
 	))
@@ -47,7 +47,7 @@ func MarshalPubKeyAsPEMStr(publicKey *rsa.PublicKey) string {
 func MarshalPrivKeyAsPEMStr(privateKey *rsa.PrivateKey) string {
 	privKeyPem := string(pem.EncodeToMemory(
 		&pem.Block{
-			Type:  "PRIVATE-KEY",
+			Type:  "RSA PRIVATE KEY",
 			Bytes: x509.MarshalPKCS1PrivateKey(privateKey),
 		},
 	))

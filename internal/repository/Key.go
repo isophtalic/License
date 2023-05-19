@@ -8,4 +8,5 @@ import (
 type KeyRepository interface {
 	GetDB() *gorm.DB
 	Create(keys ...*models.Key)
+	GetKeyByProductID(productID string) (*models.Key, error)
 }
