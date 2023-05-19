@@ -18,6 +18,7 @@ This repository containing the source code for a centralized license management 
 ## Usage/Examples
 
 - Install Golang
+    Follow url : https://go.dev/dl/
 
 ```
     $ go get -v
