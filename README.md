@@ -12,7 +12,7 @@ This repository containing the source code for a centralized license management 
 ## Run DB in docker-compose
 
 ```
-    $ docker-compse up -d
+    $ docker compose up -d
 ```
 
 ## Usage/Examples
