@@ -12,3 +12,14 @@ type Key struct {
 	ProductID_FK *string    `json:"productID,omitempty" gorm:"column:product_id;type:uuid;foreignKey:ProductID_FK;constraint:OnUpdate:CASCADE,OnDelete:SET NULL"`
 	Creator      *User      `json:"creator" gorm:"foreignKey:CreatorID_FK;constraint:OnUpdate:CASCADE,OnDelete:SET NULL"`
 }
+
+type License_key struct {
+	Key          *string
+	LicenseID    *string   `json:"licenseID" gorm:"foreignKey:LicenseID_FK; constraint:OnUpdate:CASCADE,OnDelete:SET NULL"`
+	Status       *bool     `json:"status" gorm:"type:bool;not null"`
+	Start        time.Time `json:"start" gorm:"type:timestamp;not null"`
+	End          time.Time `json:"end" gorm:"type:timestamp;not null"`
+	LastLoggedIn time.Time `json:"last_logged_in" gorm:"type:timestamp;not null"`
+	CreatedAt    time.Time `json:"created_at" gorm:"type:timestamp;not null"`
+	UpdatedAt    time.Time `json:"updated_at" gorm:"type:timestamp;not null"`
+}
