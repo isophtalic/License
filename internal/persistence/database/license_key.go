@@ -36,7 +36,7 @@ func (repo *PostgresLicenseKeyProvider) Create(keys ...*models.License_key) {
 	}
 	r := repo.db.Model(&models.License_key{}).Create(keys)
 	if r.Error != nil {
-		println(fmt.Printf("Error: Create keys:::%v", r.Error))
+		println(fmt.Printf("Error: Create License_keys:::%v", r.Error))
 		panic(r.Error)
 	}
 }
@@ -48,8 +48,8 @@ func (repo *PostgresLicenseKeyProvider) GetByLicenseID(license_id string) ([]mod
 	return license_key, result.Error
 }
 
-func (repo *PostgresLicenseKeyProvider) ChangeStatus(licene_id string, status bool) error {
+func (repo *PostgresLicenseKeyProvider) ChangeStatus(license_id string, status bool) error {
 	database := repo.db
-	result := database.Model(&models.License_key{}).Update("status", &status)
+	result := database.Model(&models.License_key{LicenseID: &license_id}).Update("status", &status)
 	return result.Error
 }

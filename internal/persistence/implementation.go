@@ -25,6 +25,7 @@ var (
 	customer               repository.CustomerRepository
 	license                repository.LicenseRepository
 	licenseConfig          repository.LicenseConfigRepository
+	licenseKey             repository.LicenseKeyRepository
 	loadUserRepositoryOnce sync.Once
 )
 
@@ -37,6 +38,7 @@ func loadRepositoryProvider(config *configs.Configure) {
 		customer = database.NewPostgresCustomerProvider("customer", postgresDB)
 		license = database.NewPostgresLicenseProvider("license", postgresDB)
 		licenseConfig = database.NewPostgresLicenseConfigProvider("licenseConfig", postgresDB)
+		licenseKey = database.NewPostgresLicenseKeyProvider("license_key", postgresDB)
 	})
 }
 
@@ -62,6 +64,7 @@ func MigrateDatabase() {
 		&models.Customer{},
 		&models.License{},
 		&models.LicenseConfig{},
+		&models.License_key{},
 	)
 	if err != nil {
 		panic(err)
@@ -128,4 +131,11 @@ func LicenseConfig() repository.LicenseConfigRepository {
 		log.Fatalln("persistence: LicenseConfig not initiated")
 	}
 	return licenseConfig
+}
+
+func LicenseKey() repository.LicenseKeyRepository {
+	if licenseKey == nil {
+		log.Fatalln("persistence: LicenseKey not initiated")
+	}
+	return licenseKey
 }

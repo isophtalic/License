@@ -6,6 +6,7 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"net/http"
+	"time"
 
 	libAES "github.com/isophtalic/GenerateKey/lib/aes"
 	libRSA "github.com/isophtalic/GenerateKey/lib/rsa"
@@ -20,6 +21,27 @@ import (
 var newRSA libRSA.RSA
 var newAES libAES.AES
 
+func Encrypt(license_id string) (encodedCipherText, key string) {
+	_, priKeyString, data := getKeys(license_id)
+	hashedStringInfo, _, _ := hashInfoByAES(&data)
+
+	privateKey := libUtilities.PEMStringToRSAPrivateKey([]byte(priKeyString))
+	encodedCipherText = newRSA.Sign(hashedStringInfo, privateKey.(*rsa.PrivateKey))
+	key = libUtilities.KeyGenerateString()
+	bol := true
+	licenseKey := &models.License_key{
+		Key:       &key,
+		LicenseID: &license_id,
+		Status:    &bol,
+		Start:     time.Now(),
+		End:       time.Now().Add(time.Hour * 24 * 365),
+		CreatedAt: time.Now(),
+		UpdatedAt: time.Now(),
+	}
+	persistence.LicenseKey().Create(licenseKey)
+	return
+}
+
 func getKeys(license_id string) (string, string, *models.License) {
 	data, err := serviceLicense.GetLicenseByID(license_id)
 	if err != nil {
@@ -31,16 +53,6 @@ func getKeys(license_id string) (string, string, *models.License) {
 		customError.Throw(http.StatusUnprocessableEntity, "Don't get product key by :"+err.Error())
 	}
 	return *keyDetail.PublicKey, *keyDetail.PrivateKey, data
-}
-
-func Encrypt(license_id string) (encodedCipherText, key string) {
-	_, priKeyString, data := getKeys(license_id)
-	hashedStringInfo, _, _ := hashInfoByAES(&data)
-
-	privateKey := libUtilities.PEMStringToRSAPrivateKey([]byte(priKeyString))
-	encodedCipherText = newRSA.Sign(hashedStringInfo, privateKey.(*rsa.PrivateKey))
-	key = libUtilities.KeyGenerateString()
-	return
 }
 
 func hashInfoByAES(info interface{}) (string, cipher.Block, []byte) {
