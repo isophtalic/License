@@ -16,8 +16,9 @@ func NewAPIv1(config *configs.Configure, mode string) *gin.Engine {
 
 	v1.Use(
 		middleware.AuthMiddleware(config.JWT_KEY),
+		middleware.CORS(config),
 	)
-
+	logoutRouter(v1)
 	userRouter(v1)
 	profileRouter(v1)
 	productRouter(v1)

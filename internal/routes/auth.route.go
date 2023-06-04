@@ -8,5 +8,8 @@ import (
 func authRouter(parent *gin.RouterGroup) {
 	router := parent.Group("/auth")
 	router.POST("/log-in", app.Login())
-	router.POST("/log-out", app.LogOut())
+
+}
+func logoutRouter(parent *gin.RouterGroup) {
+	parent.POST("/auth/log-out", app.LogOut())
 }
