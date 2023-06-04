@@ -13,7 +13,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/isophtalic/License/internal/configs"
-	"github.com/isophtalic/License/internal/initdata"
+	initdata "github.com/isophtalic/License/internal/initiality"
 	"github.com/isophtalic/License/internal/persistence"
 	"github.com/isophtalic/License/internal/routes"
 	"github.com/urfave/cli/v2"
