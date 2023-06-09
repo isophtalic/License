@@ -79,7 +79,7 @@ func main() {
 			Action: InfoCommand(),
 		},
 		{
-			Name:   "runserver",
+			Name:   "server",
 			Usage:  "Run server the web server",
 			Action: RunServerCommand(),
 		},
