@@ -23,10 +23,14 @@ var newAES libAES.AES
 
 func Encrypt(license_id string) (encodedCipherText, key string) {
 	_, priKeyString, data := getKeys(license_id)
-	hashedStringInfo, _, _ := hashInfoByAES(&data)
+	hashedStringInfo, KeyAES, initialVector := hashInfoByAES(&data)
 
 	privateKey := libUtilities.PEMStringToRSAPrivateKey([]byte(priKeyString))
 	encodedCipherText = newRSA.Sign(hashedStringInfo, privateKey.(*rsa.PrivateKey))
+
+	// add key AES inside license_key
+	encodedCipherText += "." + base64.StdEncoding.EncodeToString(KeyAES) + "." + base64.StdEncoding.EncodeToString(initialVector)
+
 	key = libUtilities.KeyGenerateString()
 	bol := true
 	licenseKey := &models.License_key{
@@ -55,7 +59,7 @@ func getKeys(license_id string) (string, string, *models.License) {
 	return *keyDetail.PublicKey, *keyDetail.PrivateKey, data
 }
 
-func hashInfoByAES(info interface{}) (string, cipher.Block, []byte) {
+func hashInfoByAES(info interface{}) (string, []byte, []byte) {
 	byteInfo, err := json.Marshal(info)
 	if err != nil {
 		panic(err)
@@ -65,7 +69,7 @@ func hashInfoByAES(info interface{}) (string, cipher.Block, []byte) {
 	initialVector := newAES.GenerateInitializationVector()
 	hashFromData := newAES.Encrypt(AESBlock, initialVector, string(byteInfo))
 	hashStringFromData := base64.StdEncoding.EncodeToString(hashFromData)
-	return hashStringFromData, AESBlock, initialVector
+	return hashStringFromData, key, initialVector
 }
 
 func unHashInfoAES(block cipher.Block, iv []byte, cipherText string) []byte {
