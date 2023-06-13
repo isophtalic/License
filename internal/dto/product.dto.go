@@ -1,6 +1,10 @@
 package dto
 
-import "github.com/isophtalic/License/internal/models"
+import (
+	"time"
+
+	"github.com/isophtalic/License/internal/models"
+)
 
 type ProductDTO struct {
 	Name        *string `json:"name,omitempty"`
@@ -21,5 +25,18 @@ func ToProduct(productDTO *ProductDTO) *models.Product {
 		Phone:       productDTO.Phone,
 		Address:     productDTO.Address,
 		Status:      productDTO.Status,
+	}
+}
+
+func UpdateProduct(productDTO *ProductDTO) *models.Product {
+	return &models.Product{
+		Name:        productDTO.Name,
+		Description: productDTO.Description,
+		Company:     productDTO.Company,
+		Email:       productDTO.Email,
+		Phone:       productDTO.Phone,
+		Address:     productDTO.Address,
+		Status:      productDTO.Status,
+		UpdatedAt:   time.Now(),
 	}
 }

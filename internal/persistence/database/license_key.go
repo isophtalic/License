@@ -3,6 +3,7 @@ package database
 import (
 	"fmt"
 
+	"github.com/isophtalic/License/internal/helpers"
 	"github.com/isophtalic/License/internal/models"
 	postgresDB "github.com/isophtalic/License/internal/persistence/postgres"
 	"gorm.io/gorm"
@@ -30,6 +31,16 @@ func (repo *PostgresLicenseKeyProvider) GetDB() *gorm.DB {
 	return repo.db
 }
 
+func (repo *PostgresLicenseKeyProvider) GetLicenseKey(per_page, pg, sort string, license_id string) (licenseKeys []models.License_key, page, totalPage int, err error) {
+	database := repo.db
+
+	pagination := helpers.CreatePagination(per_page, pg, sort)
+	licenseKeys = make([]models.License_key, 0)
+	cursor := database.Scopes(helpers.Paginate(&models.License_key{}, pagination, database)).Where("license_id = ?", license_id).Find(&licenseKeys)
+
+	return licenseKeys, pagination.GetPage(), pagination.GetTotalPages(), cursor.Error
+}
+
 func (repo *PostgresLicenseKeyProvider) Create(keys ...*models.License_key) {
 	if len(keys) == 0 {
 		return
@@ -48,7 +59,7 @@ func (repo *PostgresLicenseKeyProvider) GetByLicenseID(license_id string) ([]mod
 	return license_key, result.Error
 }
 
-func (repo *PostgresLicenseKeyProvider) ChangeStatus(license_id string, status bool) error {
+func (repo *PostgresLicenseKeyProvider) ChangeStatus(license_id string, key string, status bool) error {
 	database := repo.db
 	result := database.Model(&models.License_key{LicenseID: &license_id}).Update("status", &status)
 	return result.Error

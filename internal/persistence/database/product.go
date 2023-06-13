@@ -80,8 +80,8 @@ func (repo *PostgresProductProvider) CreateOne(creatorEmail string, productDTO *
 		Email:        productDTO.Email,
 		Phone:        productDTO.Phone,
 		Address:      productDTO.Address,
-		CreatedAt:    &[]time.Time{time.Now()}[0],
-		UpdatedAt:    &[]time.Time{time.Now()}[0],
+		CreatedAt:    time.Now(),
+		UpdatedAt:    time.Now(),
 		CreatorID_FK: creator.UserID,
 	}
 	r := repo.db.Create(&product)
@@ -93,7 +93,7 @@ func (repo *PostgresProductProvider) CreateOne(creatorEmail string, productDTO *
 }
 
 func (repo *PostgresProductProvider) Update(id string, productUpdate *dto.ProductDTO) *models.Product {
-	r := repo.db.Where("product_id", id).Updates(dto.ToProduct(productUpdate))
+	r := repo.db.Where("product_id", id).Updates(dto.UpdateProduct(productUpdate))
 	if r.Error != nil {
 		println(fmt.Printf("Error: Update product::: %v", r.Error))
 		return nil

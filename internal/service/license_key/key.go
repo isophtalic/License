@@ -5,9 +5,11 @@ import (
 	"crypto/rsa"
 	"encoding/base64"
 	"encoding/json"
+	"errors"
 	"net/http"
 	"time"
 
+	"github.com/gin-gonic/gin"
 	libAES "github.com/isophtalic/GenerateKey/lib/aes"
 	libRSA "github.com/isophtalic/GenerateKey/lib/rsa"
 	libUtilities "github.com/isophtalic/GenerateKey/utilities"
@@ -44,6 +46,20 @@ func Encrypt(license_id string) (encodedCipherText, key string) {
 	}
 	persistence.LicenseKey().Create(licenseKey)
 	return
+}
+
+func Active(c *gin.Context) error {
+	key := c.Param("license_key")
+	licenseID := c.Param("license_id")
+
+	if len(key) == 0 || len(licenseID) == 0 {
+		return errors.New("Need to license_id")
+	}
+
+	status := true
+
+	err := persistence.LicenseKey().ChangeStatus(licenseID, key, status)
+	return err
 }
 
 func getKeys(license_id string) (string, string, *models.License) {

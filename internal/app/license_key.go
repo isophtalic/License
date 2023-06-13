@@ -26,3 +26,29 @@ func MakeLicenseKey() gin.HandlerFunc {
 		})
 	})
 }
+
+func GetLicenseKeys() gin.HandlerFunc {
+	return HandleErrorWrapper(func(c *gin.Context) {
+		data, page, totalPages := serviceLicenseKey.GetKeys(c.Request.URL.Query(), c)
+		Response(c, http.StatusOK, ResponseBody{
+			Message: "successfully",
+			Data: map[string]interface{}{
+				"page":       page,
+				"totalPages": totalPages,
+				"data":       data,
+			},
+		})
+	})
+}
+
+func Active() gin.HandlerFunc {
+	return HandleErrorWrapper(func(c *gin.Context) {
+		err := serviceLicenseKey.Active(c)
+		if err != nil {
+			customError.Throw(http.StatusUnprocessableEntity, "Can't active license_key : "+err.Error())
+		}
+		Response(c, http.StatusOK, ResponseBody{
+			Message: "successfully",
+		})
+	})
+}
