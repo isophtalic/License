@@ -7,7 +7,7 @@ import (
 
 func profileRouter(parent *gin.RouterGroup) {
 	router := parent.Group("/profile")
-	router.GET("/", app.Profile())
+	router.GET("", app.Profile())
 	router.PUT("/change-password", app.ChangePassword())
 	router.PUT("", app.UpdateProfile())
 }

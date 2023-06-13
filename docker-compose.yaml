@@ -1,6 +1,13 @@
 version: '3.5'
 
 services:
+  # license.management: 
+  #   build: ./build/
+  #   ports:
+  #     - 8000:8000
+  #   depends_on:
+  #     - db.license
+  #     - redis.license
   pgadmin:
     image: dpage/pgadmin4
     container_name: pgadmin4_container

@@ -8,7 +8,7 @@ import (
 func licenseRouter(parent *gin.RouterGroup) {
 	router := parent.Group("/license")
 	router.GET("", app.GetLicenses())
-	router.POST("/", app.CreateLicense())
+	router.POST("", app.CreateLicense())
 	router.PUT("/:id", app.UpdateLicense())
 	// api handle config
 	router.GET("/:license_id/config", app.GetLicenseConfigs())

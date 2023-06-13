@@ -9,8 +9,8 @@ import (
 func productRouter(parent *gin.RouterGroup) {
 	router := parent.Group("/product")
 	// product
-	router.POST("/", app.CreateProduct())
-	router.GET("/", app.ListProducts())
+	router.POST("", app.CreateProduct())
+	router.GET("", app.ListProducts())
 	router.PATCH("/:id", app.UpdateProduct())
 	router.GET("/:id", app.DetailProduct())
 	//adjkf

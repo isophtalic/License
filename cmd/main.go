@@ -14,6 +14,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/isophtalic/License/internal/configs"
 	initdata "github.com/isophtalic/License/internal/initiality"
+	"github.com/isophtalic/License/internal/middleware"
 	"github.com/isophtalic/License/internal/persistence"
 	"github.com/isophtalic/License/internal/routes"
 	"github.com/urfave/cli/v2"
@@ -43,7 +44,7 @@ func RunServerCommand() func(c *cli.Context) error {
 			fmt.Printf("Service is running on http://127.0.0.1%s/api/v1\n", config.ServerPort)
 		}
 		serve := routes.NewAPIv1(config, config.Mode)
-
+		serve.Use(middleware.CORS(config))
 		serve.Run(config.ServerPort)
 		return nil
 	}
