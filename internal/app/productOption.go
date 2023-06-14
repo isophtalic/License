@@ -1,6 +1,7 @@
 package app
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -33,6 +34,7 @@ func CreateOptions() gin.HandlerFunc {
 		var productOption dto.ProductOptionDTO
 		err := c.ShouldBindJSON(&productOption)
 		if err != nil {
+			fmt.Println(err.Error())
 			customError.Throw(http.StatusBadRequest, err.Error())
 		}
 		productOptionService.CreateOptions(creatorEmail, &productOption)

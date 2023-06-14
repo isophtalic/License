@@ -19,6 +19,7 @@ func productRouter(parent *gin.RouterGroup) {
 
 	//key
 	router.POST("/:id/key", app.GenerateNewKeys())
+	router.GET("/:id/key", app.GetKeyProduct())
 	router.POST("/:id/key/upload",
 		middleware.SizeLimiterMiddleware(5000),
 		middleware.ExtRestrictMiddleware([]string{".pem"}),
