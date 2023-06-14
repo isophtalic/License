@@ -34,6 +34,8 @@ func loadRepositoryProvider(config *configs.Configure) {
 		account = redis.NewUserAccessIDRedisRepository(config) // not change engine yet
 		user = database.NewPostgresUserProvider("user", postgresDB)
 		product = database.NewPostgresProductProvider("product", postgresDB)
+		productOption = database.NewPostgresPdOptionProvider("product_options", postgresDB)
+		productOptionDetail = database.NewPostgresPdOptionDetailProvider("product_option_details", postgresDB)
 		key = database.NewPostgresKeyProvider("keys", postgresDB)
 		customer = database.NewPostgresCustomerProvider("customer", postgresDB)
 		license = database.NewPostgresLicenseProvider("license", postgresDB)

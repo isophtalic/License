@@ -94,6 +94,7 @@ func LogIn(cmd *AuthSignIn) (string, error) {
 	}
 
 	keyRedis := *user.UserID + ":" + claims.Id
+
 	value := strings.Split(tokenString, ".")[2]
 	err = persistence.Account().Set(keyRedis, value, time.Now().Add(24*time.Hour))
 	if err != nil {

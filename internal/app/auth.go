@@ -25,7 +25,7 @@ func Login() gin.HandlerFunc {
 		token, err := serviceUser.LogIn(cmd)
 		if err != nil {
 			Response(c, http.StatusBadRequest, ResponseBody{
-				Message: "Login Unsuccessfully",
+				Message: "Login Unsuccessfully ",
 			})
 			return
 		}

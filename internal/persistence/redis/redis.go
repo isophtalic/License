@@ -229,6 +229,7 @@ func (r *RedisClient) Increment(key string) error {
 func (r *RedisClient) DelAllByFields(accessID, field string) error {
 	cursor := uint64(0)
 	keys, cursor, err := r.client.HScan(accessID, cursor, field, 0).Result()
+	fmt.Println(keys)
 	if err != nil {
 		panic(err)
 	}
