@@ -107,18 +107,19 @@ func Search() gin.HandlerFunc {
 	})
 }
 
+// [GET] /product/:id/key?type
 func GetKeyProduct() gin.HandlerFunc {
 	return HandleErrorWrapper(func(c *gin.Context) {
 		productID := c.Param("id")
-		key := productService.GetKey(productID)
+		data := productService.GetKey(productID)
 		Response(c, http.StatusOK, ResponseBody{
-			Data:    &key,
+			Data:    data,
 			Message: "Successfully",
 		})
 	})
 }
 
-// [GET] /product/:id/key?type
+// [POST] /product/:id/key?type
 func GenerateNewKeys() gin.HandlerFunc {
 	return HandleErrorWrapper(func(c *gin.Context) {
 		productID := c.Param("id")

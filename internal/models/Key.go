@@ -22,3 +22,9 @@ type License_key struct {
 	CreatedAt time.Time `json:"created_at" gorm:"type:timestamp;not null"`
 	UpdatedAt time.Time `json:"updated_at" gorm:"type:timestamp;not null"`
 }
+
+type KeyDetailResponse struct {
+	Type        string
+	CreatedAt   time.Time
+	CreatorName string
+}

@@ -6,7 +6,6 @@ import (
 	"net/url"
 	"strconv"
 	"strings"
-	"time"
 
 	customError "github.com/isophtalic/License/internal/error"
 	"github.com/isophtalic/License/internal/helpers"
@@ -105,21 +104,16 @@ func Search(keyWord string, query url.Values) ([]models.Product, int, int) {
 	return findProducts(keyword, query, []string{"product_id", "name", "status", "email", "description", "created_at", "creator_id"})
 }
 
-func GetKey(productID string) (keyRes *keyResponse) {
+func GetKey(productID string) (keyRes models.KeyDetailResponse) {
 	keyDetail, err := persistence.Key().GetKeyByProductID(productID)
 	if err != nil {
 		customError.Throw(http.StatusUnprocessableEntity, "Don't get product key by :"+err.Error())
 	}
-	keyRes = &keyResponse{
-		Type:        keyDetail.Type,
-		CreatedAt:   keyDetail.CreatedAt,
-		CreatorName: keyDetail.Creator.Name,
+
+	keyRes = models.KeyDetailResponse{
+		Type:        *keyDetail.Type,
+		CreatedAt:   *keyDetail.CreatedAt,
+		CreatorName: *keyDetail.Creator.Name,
 	}
 	return keyRes
-}
-
-type keyResponse struct {
-	Type        *string
-	CreatedAt   *time.Time
-	CreatorName *string
 }

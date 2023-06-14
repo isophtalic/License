@@ -65,6 +65,7 @@ func UploadKeys(productID string, creatorEmail string, typeKey string, files []*
 		CreatedAt:    &[]time.Time{time.Now()}[0],
 		CreatorID_FK: creator.UserID,
 		ProductID_FK: &productID,
+		Creator:      creator,
 	}
 	persistence.Key().Create(&key)
 }
